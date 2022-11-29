@@ -73,10 +73,10 @@ type Config struct {
 
 func (c *Config) PostProcess() error {
 
-	c.BootstrapServers = util.ResolveConfigValue(c.BootstrapServers)
-	c.SASL.Username = util.ResolveConfigValue(c.SASL.Username)
-	c.SASL.Password = util.ResolveConfigValue(c.SASL.Password)
-	c.SASL.Mechanisms = util.ResolveConfigValue(c.SASL.Mechanisms)
+	c.BootstrapServers = util.ResolveConfigValueToString(c.BootstrapServers)
+	c.SASL.Username = util.ResolveConfigValueToString(c.SASL.Username)
+	c.SASL.Password = util.ResolveConfigValueToString(c.SASL.Password)
+	c.SASL.Mechanisms = util.ResolveConfigValueToString(c.SASL.Mechanisms)
 
 	return nil
 }
