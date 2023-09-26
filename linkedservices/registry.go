@@ -3,9 +3,11 @@ package linkedservices
 import (
 	"context"
 	"errors"
+	"fmt"
 	"github.com/mario-imperato/r3ds9-apicommon/linkedservices/kafka"
 	"github.com/mario-imperato/r3ds9-apicommon/linkedservices/mongodb"
 	"github.com/mario-imperato/r3ds9-apicommon/linkedservices/restclient"
+	"go.mongodb.org/mongo-driver/mongo"
 
 	kafka_go "github.com/confluentinc/confluent-kafka-go/kafka"
 	"github.com/rs/zerolog/log"
@@ -128,6 +130,8 @@ func NewKafkaProducer(ctx context.Context, brokerName, tId string) (*kafka_go.Pr
  *
  */
 
+const MongoDbDefaultInstanceName = "default"
+
 func GetMongoDbService(ctx context.Context, n string) (*mongodb.MDbLinkedService, error) {
 	log.Trace().Str("broker", n).Msg("get mongo linked service")
 
@@ -146,6 +150,21 @@ func GetMongoDbService(ctx context.Context, n string) (*mongodb.MDbLinkedService
 	err := errors.New("mongo linked service not configured")
 	log.Error().Err(err).Str("broker-name", n).Msg("retrieve mongo linked service")
 	return nil, err
+}
+
+func GetMongoDbCollection(ctx context.Context, instanceName string, collectionId string) (*mongo.Collection, error) {
+
+	lks, err := GetMongoDbService(ctx, instanceName)
+	if err != nil {
+		return nil, err
+	}
+
+	c := lks.GetCollection(collectionId, "")
+	if c == nil {
+		return c, fmt.Errorf("cannot find collection by id %s", collectionId)
+	}
+
+	return c, nil
 }
 
 func initializeMongo(cfg []mongodb.MongoConfig) error {

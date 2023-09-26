@@ -21,10 +21,7 @@ const (
 	ApiGtwUiPathPatternNested = ":hostDomain/:hostSite/:hostLang/:hostAppId/*exPathInfo"
 	ApiGtwApiGroupPattern     = ":apiCtx/:hostDomain/:hostSite/:hostLang"
 
-	ApiCorePathGroupWhoAmI     = "/core/:hostDomain/:hostSite/:hostLang/host/user"
-	ApiCorePathGroupHostSite   = "/core/:hostDomain/:hostSite/:hostLang/host/site"
-	ApiCorePathGroupHostDomain = "/core/:hostDomain/:hostSite/:hostLang/host/domain"
-
+	ApiCorePathGroupHost   = "/core/:hostDomain/:hostSite/:hostLang/host"
 	ApiCorePathGroupUser   = "/core/:hostDomain/:hostSite/:hostLang/user"
 	ApiCorePathGroupSite   = "/core/:hostDomain/:hostSite/:hostLang/site"
 	ApiCorePathGroupDomain = "/core/:hostDomain/:hostSite/:hostLang/domain"
