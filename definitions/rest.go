@@ -21,8 +21,14 @@ const (
 	ApiGtwUiPathPatternNested = ":hostDomain/:hostSite/:hostLang/:hostAppId/*exPathInfo"
 	ApiGtwApiGroupPattern     = ":apiCtx/:hostDomain/:hostSite/:hostLang"
 
-	ApiCorePathGroupHost   = "/core/:hostDomain/:hostSite/:hostLang/host"
-	ApiCorePathGroupUser   = "/core/:hostDomain/:hostSite/:hostLang/user"
-	ApiCorePathGroupSite   = "/core/:hostDomain/:hostSite/:hostLang/site"
-	ApiCorePathGroupDomain = "/core/:hostDomain/:hostSite/:hostLang/domain"
+	ApiCorePathGroupHost            = "/core/:hostDomain/:hostSite/:hostLang/host"
+	ApiCorePathGroupUser            = "/core/:hostDomain/:hostSite/:hostLang/user"
+	ApiCorePathGroupSite            = "/core/:hostDomain/:hostSite/:hostLang/site"
+	ApiCorePathGroupDomain          = "/core/:hostDomain/:hostSite/:hostLang/domain"
+	ApiCorePathGroupKeyValuePackage = "/core/:hostDomain/:hostSite/:hostLang/properties"
+)
+
+const (
+	RootDomain   = "root"
+	SiteWildCard = "*"
 )
