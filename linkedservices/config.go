@@ -1,15 +1,15 @@
 package linkedservices
 
 import (
+	"github.com/GPA-Gruppo-Progetti-Avanzati-SRL/tpm-mongo-common/mongolks"
 	"github.com/mario-imperato/r3ds9-apicommon/linkedservices/kafka"
-	"github.com/mario-imperato/r3ds9-apicommon/linkedservices/mongodb"
 	"github.com/mario-imperato/r3ds9-apicommon/linkedservices/restclient"
 )
 
 type Config struct {
-	RestClient *restclient.Config    `mapstructure:"rest-client" json:"rest-client" yaml:"rest-client"`
-	Kafka      []kafka.Config        `mapstructure:"kafka" json:"kafka" yaml:"kafka"`
-	Mongo      []mongodb.MongoConfig `mapstructure:"mongo" json:"mongo" yaml:"mongo"`
+	RestClient *restclient.Config `mapstructure:"rest-client" json:"rest-client" yaml:"rest-client"`
+	Kafka      []kafka.Config     `mapstructure:"kafka" json:"kafka" yaml:"kafka"`
+	Mongo      []mongolks.Config  `mapstructure:"mongo" json:"mongo" yaml:"mongo"`
 }
 
 func (c *Config) PostProcess() error {

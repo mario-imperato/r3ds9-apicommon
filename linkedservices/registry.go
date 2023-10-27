@@ -3,20 +3,16 @@ package linkedservices
 import (
 	"context"
 	"errors"
-	"fmt"
-	"github.com/mario-imperato/r3ds9-apicommon/linkedservices/kafka"
-	"github.com/mario-imperato/r3ds9-apicommon/linkedservices/mongodb"
-	"github.com/mario-imperato/r3ds9-apicommon/linkedservices/restclient"
-	"go.mongodb.org/mongo-driver/mongo"
-
+	"github.com/GPA-Gruppo-Progetti-Avanzati-SRL/tpm-mongo-common/mongolks"
 	kafka_go "github.com/confluentinc/confluent-kafka-go/kafka"
+	"github.com/mario-imperato/r3ds9-apicommon/linkedservices/kafka"
+	"github.com/mario-imperato/r3ds9-apicommon/linkedservices/restclient"
 	"github.com/rs/zerolog/log"
 )
 
 type ServiceRegistry struct {
-	RestClient       *restclient.LinkedService
-	kafka            []*kafka.LinkedService
-	MDbLinkedService []*mongodb.MDbLinkedService
+	RestClient *restclient.LinkedService
+	kafka      []*kafka.LinkedService
 }
 
 var registry ServiceRegistry
@@ -26,17 +22,17 @@ func InitRegistry(cfg *Config) error {
 	registry = ServiceRegistry{}
 	log.Info().Msg("initialize services registry")
 
-	err := initializeRestClientProvider(cfg.RestClient)
+	_, err := mongolks.Initialize(cfg.Mongo)
+	if err != nil {
+		return err
+	}
+
+	err = initializeRestClientProvider(cfg.RestClient)
 	if err != nil {
 		return err
 	}
 
 	err = initializeKafka(cfg.Kafka)
-	if err != nil {
-		return err
-	}
-
-	err = initializeMongo(cfg.Mongo)
 	if err != nil {
 		return err
 	}
@@ -128,7 +124,7 @@ func NewKafkaProducer(ctx context.Context, brokerName, tId string) (*kafka_go.Pr
 
 /*
  *
- */
+
 
 const MongoDbDefaultInstanceName = "default"
 
@@ -183,3 +179,4 @@ func initializeMongo(cfg []mongodb.MongoConfig) error {
 	}
 	return nil
 }
+*/
