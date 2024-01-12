@@ -26,6 +26,10 @@ const (
 	ApiCorePathGroupSite            = "/core/:hostDomain/:hostSite/:hostLang/site"
 	ApiCorePathGroupDomain          = "/core/:hostDomain/:hostSite/:hostLang/domain"
 	ApiCorePathGroupKeyValuePackage = "/core/:hostDomain/:hostSite/:hostLang/properties"
+
+	ApiCmsPathGroupCard      = "/cms/:hostDomain/:hostSite/:hostLang/card"
+	ApiCmsPathGroupUserCards = "/cms/:hostDomain/:hostSite/:hostLang/user-cards"
+	ApiCmsPathGroupFiles     = "/cms/:hostDomain/:hostSite/:hostLang/files"
 )
 
 const (
