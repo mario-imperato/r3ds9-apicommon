@@ -3,6 +3,7 @@ package linkedservices
 import (
 	"context"
 	"errors"
+	"github.com/GPA-Gruppo-Progetti-Avanzati-SRL/tpm-aws-common/s3/awss3lks"
 	"github.com/GPA-Gruppo-Progetti-Avanzati-SRL/tpm-mongo-common/mongolks"
 	kafka_go "github.com/confluentinc/confluent-kafka-go/kafka"
 	"github.com/mario-imperato/r3ds9-apicommon/linkedservices/kafka"
@@ -23,6 +24,11 @@ func InitRegistry(cfg *Config) error {
 	log.Info().Msg("initialize services registry")
 
 	_, err := mongolks.Initialize(cfg.Mongo)
+	if err != nil {
+		return err
+	}
+
+	_, err = awss3lks.Initialize(cfg.S3)
 	if err != nil {
 		return err
 	}

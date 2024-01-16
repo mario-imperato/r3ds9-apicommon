@@ -1,9 +1,10 @@
 package definitions
 
 const (
-	ApiKeyHeaderName = "X-R3ds9-Api-Key"
-	SidHeaderName    = "X-R3ds9-Sid"
-	UserHeaderName   = "X-R3ds9-User"
+	ApiKeyHeaderName   = "X-R3ds9-Api-Key"
+	SidHeaderName      = "X-R3ds9-Sid"
+	UserHeaderNickName = "X-R3ds9-Nickname"
+	UserHeaderUserId   = "X-R3ds9-Userid"
 )
 
 const (
